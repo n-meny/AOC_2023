@@ -1,0 +1,49 @@
+from aoctools import *
+aocd = AOCD(2022, 1)
+puzzle_input = aocd.as_str
+#print(puzzle_input)
+
+
+elfe = 1
+elfes = {}
+pomme = ""
+
+for i in range(0, len(puzzle_input)):
+    if puzzle_input[i] == "\n" :
+        if pomme == "" :
+            continue
+        if elfe in elfes:
+            elfes[elfe] += int(pomme)
+        else:
+            elfes[elfe] = int(pomme)
+        pomme = ""
+    else:
+        pomme += puzzle_input[i]
+    if puzzle_input[i] == "\n" and puzzle_input[i+1] == "\n":
+        elfe += 1
+
+max = 0
+for elfe in elfes :
+    if max < elfes[elfe] :
+        max = elfes[elfe]
+        print(elfe, max)
+
+
+if puzzle_input[65] == "\n" :
+    print("ok")
+#aocd.submit(max, part="a", day=1, year=2022)
+
+top3Elfes = sorted(elfes.values(), reverse=True)
+print(max)
+
+top3 = top3Elfes[0] + top3Elfes[1] + top3Elfes[2]
+print(top3)
+
+aocd.p1(max)
+aocd.p2(top3)
+
+
+
+
+
+## "http.proxy": "http://vip-users.proxy.edf.fr:3131"

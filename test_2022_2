@@ -1,0 +1,77 @@
+from aoctools import *
+aocd = AOCD(2022, 2)
+puzzle_input = aocd.as_str
+
+
+adversaire = []
+moi = []
+
+for i in range(0, len(puzzle_input), 4):
+    adversaire.append(puzzle_input[i])
+    moi.append(puzzle_input[i+2])
+
+
+score = 0
+for i in range(0, len(adversaire)):
+    if adversaire[i] == "B" and moi[i] == "Y":
+        score += 2 + 3 #because Y + 2 and equal + 3
+    elif adversaire[i] == "B" and moi[i] == "X":
+        score += 1 #because X + 1 and lose + 0
+    elif adversaire[i] == "B" and moi[i] == "Z" :
+        score += 3 + 6 #because Z + 3 and win + 6
+    elif adversaire[i] == "A" and moi[i] == "Y":
+        score += 2 + 6 #because Y + 2 and win + 6
+    elif adversaire[i] == "A" and moi[i] == "X":
+        score += 1 + 3 #because X + 1 and equal + 3
+    elif adversaire[i] == "A" and moi[i] == "Z":
+        score += 3 #because Z + 3 and lose + 0
+    elif adversaire[i] == "C" and moi[i] == "Y":
+        score += 2 #because Y + 2 and lose + 0
+    elif adversaire[i] == "C" and moi[i] == "X":
+        score += 1 + 6 #because X + 1 and win + 6
+    elif adversaire[i] == "C" and moi[i] == "Z":
+        score += 3 + 3 #because Z + 3 and equal + 3
+
+print(score)
+
+aocd.p1(score)
+
+ #This strategy guide predicts and recommends the following:
+ # B , Y = paper 
+    # A , X = rock
+    # C , Z = scissors
+    # for me = Y , X , Z    Y = + 2 , X = + 1 , Z = + 3 win = + 6 lose = + 0 equal = + 3
+#  A, B, C, X, Y
+ #   In the first round, your opponent will choose Rock (A), and you should choose Paper (Y). This ends in a win for you with a score of 8 (2 because you chose Paper + 6 because you won).
+  #  In the second round, your opponent will choose Paper (B), and you should choose Rock (X). This ends in a loss for you with a score of 1 (1 + 0).
+   # The third round is a draw with both players choosing Scissors, giving you a score of 3 + 3 = 6.
+
+# In this example, if you were to follow the strategy guide, you would get a total score of 15 (8 + 1 + 6).
+
+
+# the second column says how the round needs to end: X means you need to lose, 
+# Y means you need to end the round in a draw, and Z means you need to win. Good luck!"
+
+score2 = 0
+for i in range(0, len(adversaire)):
+    if adversaire[i] == "B" and moi[i] == "Y":
+        score2 += 2 + 3 #because Y + 2 and equal + 3
+    elif adversaire[i] == "B" and moi[i] == "X":
+        score2 += 1 #because X + 1 and lose + 0
+    elif adversaire[i] == "B" and moi[i] == "Z" :
+        score2 += 3 + 6 #because Z + 3 and win + 6
+    elif adversaire[i] == "A" and moi[i] == "Y":
+        score2 += 1 + 3 #because X + 1 and equal + 3
+    elif adversaire[i] == "A" and moi[i] == "X":
+        score2 += 3 #because Z + 3 and lose + 0
+    elif adversaire[i] == "A" and moi[i] == "Z":
+         score2 += 2 + 6 #because Y + 2 and win + 6
+    elif adversaire[i] == "C" and moi[i] == "Y":
+        score2 += 3 + 3 #because Z + 3 and equal + 3
+    elif adversaire[i] == "C" and moi[i] == "X":
+        score2 += 2 #because Y + 2 and lose + 0
+    elif adversaire[i] == "C" and moi[i] == "Z":
+        score2 += 1 + 6 #because X + 1 and win + 6
+
+print(score2)
+aocd.p2(score2)
