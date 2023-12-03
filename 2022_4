@@ -3,3 +3,4 @@ aocd = AOCD(2022, 4)
 puzzle = aocd.slist_split_at("-")
 
 print(puzzle)
+

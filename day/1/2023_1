@@ -1,0 +1,112 @@
+from aoctools import *
+aocd = AOCD(2023, 1)
+puzzle = aocd.slist
+
+s1 = 0
+clé = ""
+for mot in puzzle :
+    for caractere in mot :
+        if caractere.isdigit() :
+            clé += caractere
+
+    s1 += int(clé[0] + clé[-1])
+    clé = ""
+
+
+#aocd.p1(s1)
+
+
+def trouver(mot, index = 0, clé = "") :
+    if mot.find("one", index) :
+        clé += "1" 
+        index2 = mot.find("one", index) + 3
+    if mot.find("two", index) :
+        clé += "2"
+        index2 = mot.find("two", index) + 3
+    if mot.find("three", index) :
+        clé += "3"
+        index2 = mot.find("three", index) + 5
+    if mot.find("four", index) :
+        clé += "4"
+        index2 = mot.find("four", index) + 4
+    if mot.find("five", index) :
+        clé += "5"
+        index2 = mot.find("five", index) + 4
+    if mot.find("six", index) :
+        clé += "6"
+        index2 = mot.find("six", index)  + 3
+    if mot.find("seven", index) :
+        clé += "7"
+        index2 = mot.find("seven", index) + 5
+    if mot.find("eight", index) :
+        clé += "8"
+        index2 = mot.find("eight", index) + 5
+    if mot.find("nine", index) :
+        clé += "9"
+        index2 = mot.find("nine", index) + 4
+    if mot.find("zero", index) :
+        clé += "0"
+        index2 = mot.find("zero", index) + 4
+    if index2 == index :
+        print(clé)
+        return clé
+    trouver(mot, index2, clé)
+    
+
+s2 = 0
+clé = ""
+for mot in puzzle :
+    clé = ""
+    if mot.find("one") :
+        clé += "1"
+    if mot.find("two") :
+        clé += "2"
+    if mot.find("three") :
+        clé += "3"
+    if mot.find("four") :
+        clé += "4"
+    if mot.find("five") :
+        clé += "5"
+    if mot.find("six") :
+        clé += "6"
+    if mot.find("seven") :
+        clé += "7"
+    if mot.find("eight") :
+        clé += "8"
+    if mot.find("nine") :
+        clé += "9"
+    if mot.find("zero") :
+        clé += "0"
+    #print(clé)
+    s2 += int(clé[0] + clé[-1])
+    clé = ""
+
+
+s3 = 0
+for mot in puzzle :
+    clé = trouver(mot, 0, "")
+    #s3 += int(clé[0] + clé[-1])
+
+#aocd.p2(54208)
+print(clé)
+
+print(puzzle[5])
+test = puzzle[5]
+test2 = trouver(test)
+print(test2)
+print(test.find("seven",1))
+
+clé_test = ""
+index_test = 0
+if test.find("seven") :
+    clé_test += "7"
+    index_test = test.find("seven") + 5
+print(index_test)
+print(clé_test)
+if test.find("seven", index_test) :
+    clé_test += "7"
+    index_test = test.find("seven", index_test)
+
+print(index_test)
+print(clé_test)
+print(test.find("en"))
